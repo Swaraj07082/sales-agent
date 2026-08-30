@@ -3,433 +3,387 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Sales Agent CRM</title>
+  <title>Autonomous Sales Agent</title>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
-      font-family: 'Segoe UI', system-ui, sans-serif;
-      background: #0f172a;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background: #090d16;
       color: #e2e8f0;
       min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
     }
 
-    /* ---------- Sidebar ---------- */
-    .sidebar {
-      position: fixed;
-      top: 0; left: 0;
-      width: 220px; height: 100vh;
-      background: #1e293b;
-      display: flex; flex-direction: column;
-      padding: 1.5rem 1rem;
-      border-right: 1px solid #334155;
-      z-index: 100;
+    /* ---------- Container ---------- */
+    .app-container {
+      width: 100%;
+      max-width: 960px;
+      height: 90vh;
+      max-height: 850px;
+      background: #111827;
+      border: 1px solid #1f293d;
+      border-radius: 16px;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.05);
+      overflow: hidden;
     }
-    .sidebar-logo {
-      font-size: 1.25rem; font-weight: 700;
-      color: #38bdf8; margin-bottom: 2rem;
-      display: flex; align-items: center; gap: 0.5rem;
-    }
-    .nav-item {
-      display: flex; align-items: center; gap: 0.6rem;
-      padding: 0.6rem 0.8rem; border-radius: 8px;
-      cursor: pointer; font-size: 0.9rem; color: #94a3b8;
-      transition: background 0.15s, color 0.15s;
-      margin-bottom: 4px;
-    }
-    .nav-item:hover { background: #334155; color: #e2e8f0; }
-    .nav-item.active { background: #0ea5e9; color: #fff; font-weight: 600; }
-    .nav-icon { font-size: 1rem; width: 20px; text-align: center; }
 
-    /* ---------- Main ---------- */
-    .main {
-      margin-left: 220px;
-      padding: 2rem;
-      min-height: 100vh;
+    /* ---------- Header ---------- */
+    .header {
+      padding: 1rem 1.5rem;
+      border-bottom: 1px solid #1f293d;
+      background: #131d31;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }
-    h1 { font-size: 1.5rem; font-weight: 700; margin-bottom: 1.5rem; color: #f1f5f9; }
-    h2 { font-size: 1.1rem; font-weight: 600; margin-bottom: 1rem; color: #cbd5e1; }
 
-    /* ---------- Stats Cards ---------- */
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 1rem; margin-bottom: 2rem;
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
     }
-    .stat-card {
-      background: #1e293b; border: 1px solid #334155;
-      border-radius: 12px; padding: 1.2rem;
-    }
-    .stat-label { font-size: 0.75rem; color: #64748b; text-transform: uppercase; letter-spacing: .5px; }
-    .stat-value { font-size: 1.8rem; font-weight: 700; margin-top: 4px; }
-    .stat-sub { font-size: 0.75rem; color: #64748b; margin-top: 4px; }
 
-    /* ---------- Section ---------- */
-    .section { display: none; }
-    .section.active { display: block; }
+    .agent-avatar {
+      width: 36px;
+      height: 36px;
+      background: linear-gradient(135deg, #0284c7, #38bdf8);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      box-shadow: 0 4px 12px rgba(14, 165, 233, 0.3);
+    }
 
-    /* ---------- Tables ---------- */
-    .card {
-      background: #1e293b; border: 1px solid #334155;
-      border-radius: 12px; overflow: hidden; margin-bottom: 2rem;
+    .agent-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #f8fafc;
+      letter-spacing: -0.01em;
     }
-    .card-header {
-      padding: 1rem 1.25rem; border-bottom: 1px solid #334155;
-      font-weight: 600; font-size: 0.95rem; color: #cbd5e1;
-      display: flex; align-items: center; justify-content: space-between;
-    }
-    table { width: 100%; border-collapse: collapse; }
-    thead { background: #0f172a; }
-    th { padding: 0.75rem 1rem; text-align: left; font-size: 0.75rem;
-         text-transform: uppercase; letter-spacing: .5px; color: #64748b; }
-    td { padding: 0.8rem 1rem; border-top: 1px solid #1e3a5f;
-         font-size: 0.875rem; color: #cbd5e1; }
-    tr:hover td { background: #162032; }
 
-    /* ---------- Badges ---------- */
-    .badge {
-      display: inline-block; padding: 2px 10px; border-radius: 999px;
-      font-size: 0.7rem; font-weight: 600; text-transform: uppercase;
+    .agent-subtitle {
+      font-size: 0.75rem;
+      color: #94a3b8;
     }
-    .badge-green  { background: #14532d; color: #4ade80; }
-    .badge-blue   { background: #1e3a5f; color: #38bdf8; }
-    .badge-yellow { background: #422006; color: #fbbf24; }
-    .badge-red    { background: #450a0a; color: #f87171; }
-    .badge-gray   { background: #1e293b; color: #94a3b8; border: 1px solid #334155; }
 
-    /* ---------- Agent Chat ---------- */
-    .chat-container {
-      display: flex; flex-direction: column; height: calc(100vh - 160px);
-      max-height: 700px;
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      background: rgba(34, 197, 94, 0.1);
+      border: 1px solid rgba(34, 197, 94, 0.25);
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      color: #4ade80;
+      font-weight: 500;
     }
+
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      background: #22c55e;
+      border-radius: 50%;
+      box-shadow: 0 0 8px #22c55e;
+    }
+
+    /* ---------- Chat Area ---------- */
     .chat-messages {
-      flex: 1; overflow-y: auto; padding: 1rem;
-      display: flex; flex-direction: column; gap: 1rem;
+      flex: 1;
+      overflow-y: auto;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
     }
-    .msg {
-      max-width: 80%; padding: 0.75rem 1rem; border-radius: 12px;
-      font-size: 0.875rem; line-height: 1.5;
-    }
-    .msg.user {
-      background: #0ea5e9; color: #fff;
-      align-self: flex-end; border-bottom-right-radius: 4px;
-    }
-    .msg.agent {
-      background: #1e3a5f; color: #e2e8f0;
-      align-self: flex-start; border-bottom-left-radius: 4px;
-    }
-    .msg.agent pre {
-      white-space: pre-wrap; word-break: break-word;
-      font-family: 'Cascadia Code', 'Fira Mono', monospace;
-      font-size: 0.8rem; margin-top: 0.5rem;
-      background: #0f172a; padding: 0.5rem; border-radius: 6px;
-    }
-    .msg.system {
-      background: #0f2a1f; color: #4ade80;
-      align-self: center; font-size: 0.75rem; border-radius: 6px;
-      padding: 0.4rem 0.8rem;
-    }
-    .chat-input-row {
-      display: flex; gap: 0.75rem; padding: 1rem;
-      border-top: 1px solid #334155;
-    }
-    .chat-input {
-      flex: 1; background: #0f172a; border: 1px solid #334155;
-      color: #e2e8f0; border-radius: 10px; padding: 0.7rem 1rem;
-      font-size: 0.9rem; resize: none; outline: none;
-      font-family: inherit;
-    }
-    .chat-input:focus { border-color: #0ea5e9; }
-    .chat-send {
-      background: #0ea5e9; color: #fff; border: none;
-      border-radius: 10px; padding: 0.7rem 1.2rem;
-      cursor: pointer; font-size: 0.9rem; font-weight: 600;
-      transition: background 0.15s;
-    }
-    .chat-send:hover { background: #0284c7; }
-    .chat-send:disabled { background: #334155; cursor: not-allowed; }
 
-    /* ---------- Quick prompts ---------- */
+    .msg {
+      max-width: 85%;
+      padding: 0.9rem 1.15rem;
+      border-radius: 14px;
+      font-size: 0.9rem;
+      line-height: 1.55;
+      animation: fadeIn 0.2s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .msg.user {
+      background: #0284c7;
+      color: #ffffff;
+      align-self: flex-end;
+      border-bottom-right-radius: 4px;
+      box-shadow: 0 4px 12px rgba(2, 132, 199, 0.25);
+    }
+
+    .msg.agent {
+      background: #1e293b;
+      color: #e2e8f0;
+      align-self: flex-start;
+      border-bottom-left-radius: 4px;
+      border: 1px solid #334155;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .msg.system {
+      background: rgba(30, 41, 59, 0.7);
+      color: #94a3b8;
+      align-self: center;
+      font-size: 0.8rem;
+      border-radius: 9999px;
+      padding: 0.4rem 1rem;
+      border: 1px solid #334155;
+    }
+
+    /* ---------- Action Plan Box ---------- */
+    .plan-card {
+      background: #0f172a;
+      border: 1px solid #334155;
+      border-radius: 10px;
+      padding: 0.75rem 1rem;
+      margin-top: 0.6rem;
+    }
+
+    .plan-header {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #38bdf8;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .action-pill {
+      display: inline-block;
+      background: #1e3a5f;
+      color: #7dd3fc;
+      padding: 2px 8px;
+      border-radius: 6px;
+      font-family: monospace;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    .action-args {
+      color: #cbd5e1;
+      font-size: 0.82rem;
+      margin-left: 4px;
+    }
+
+    pre.result-block {
+      white-space: pre-wrap;
+      word-break: break-word;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 0.8rem;
+      margin-top: 0.6rem;
+      background: #090d16;
+      border: 1px solid #1e293b;
+      padding: 0.75rem;
+      border-radius: 8px;
+      color: #93c5fd;
+      max-height: 250px;
+      overflow-y: auto;
+    }
+
+    /* ---------- Quick Demo Prompts ---------- */
+    .quick-prompts-wrapper {
+      padding: 0.75rem 1.25rem;
+      background: #0d1322;
+      border-top: 1px solid #1f293d;
+    }
+
+    .quick-prompts-title {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #64748b;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+
     .quick-prompts {
-      display: flex; flex-wrap: wrap; gap: 0.5rem;
-      padding: 0 1rem 1rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
     }
+
     .quick-btn {
-      background: #1e3a5f; color: #38bdf8; border: 1px solid #1e4f8a;
-      border-radius: 999px; padding: 4px 12px; font-size: 0.75rem;
-      cursor: pointer; transition: background 0.15s;
+      background: #1e293b;
+      color: #cbd5e1;
+      border: 1px solid #334155;
+      border-radius: 8px;
+      padding: 6px 12px;
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      display: flex;
+      align-items: center;
+      gap: 5px;
     }
-    .quick-btn:hover { background: #1e4f8a; }
+
+    .quick-btn:hover {
+      background: #0284c7;
+      color: #ffffff;
+      border-color: #0284c7;
+      transform: translateY(-1px);
+    }
+
+    /* ---------- Chat Input ---------- */
+    .chat-input-row {
+      display: flex;
+      gap: 0.75rem;
+      padding: 1rem 1.25rem;
+      background: #111827;
+      border-top: 1px solid #1f293d;
+      align-items: center;
+    }
+
+    .chat-input {
+      flex: 1;
+      background: #090d16;
+      border: 1px solid #334155;
+      color: #f1f5f9;
+      border-radius: 10px;
+      padding: 0.8rem 1rem;
+      font-size: 0.9rem;
+      outline: none;
+      font-family: inherit;
+      resize: none;
+      transition: border-color 0.15s;
+    }
+
+    .chat-input:focus {
+      border-color: #0284c7;
+      box-shadow: 0 0 0 2px rgba(2, 132, 199, 0.2);
+    }
+
+    .chat-send {
+      background: #0284c7;
+      color: #ffffff;
+      border: none;
+      border-radius: 10px;
+      padding: 0.8rem 1.5rem;
+      cursor: pointer;
+      font-size: 0.9rem;
+      font-weight: 600;
+      transition: background 0.15s, transform 0.1s;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .chat-send:hover {
+      background: #0369a1;
+    }
+
+    .chat-send:active {
+      transform: scale(0.98);
+    }
+
+    .chat-send:disabled {
+      background: #1e293b;
+      color: #64748b;
+      cursor: not-allowed;
+    }
 
     /* ---------- Spinner ---------- */
     .spinner {
-      display: inline-block; width: 16px; height: 16px;
-      border: 2px solid #38bdf8; border-top-color: transparent;
-      border-radius: 50%; animation: spin 0.7s linear infinite;
-      vertical-align: middle; margin-right: 6px;
+      display: inline-block;
+      width: 14px;
+      height: 14px;
+      border: 2px solid #38bdf8;
+      border-top-color: transparent;
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+      vertical-align: middle;
+      margin-right: 6px;
     }
-    @keyframes spin { to { transform: rotate(360deg); } }
 
-    /* ---------- Loading state for tables ---------- */
-    .loading-row td { text-align: center; color: #64748b; padding: 2rem; }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
   </style>
 </head>
 <body>
 
-<!-- Sidebar -->
-<nav class="sidebar">
-  <div class="sidebar-logo">🤖 Sales Agent</div>
-  <div class="nav-item active" data-section="dashboard" onclick="switchSection(this)">
-    <span class="nav-icon">📊</span> Dashboard
+<div class="app-container">
+
+  <!-- Header -->
+  <header class="header">
+    <div class="header-left">
+      <div class="agent-avatar">🤖</div>
+      <div>
+        <div class="agent-title">Sales Agent CRM Assistant</div>
+        <div class="agent-subtitle">Autonomous CRM Operations & Pipeline Intelligence</div>
+      </div>
+    </div>
+    <div class="status-badge">
+      <div class="status-dot"></div>
+      <span>Agent Ready</span>
+    </div>
+  </header>
+
+  <!-- Messages -->
+  <div class="chat-messages" id="chatMessages">
+    <div class="msg system">
+      ⚡ AI Sales Agent online. Ask about deals, update stages, schedule meetings, or send emails.
+    </div>
   </div>
-  <div class="nav-item" data-section="deals" onclick="switchSection(this)">
-    <span class="nav-icon">💼</span> Deals
+
+  <!-- Quick Demo Prompts -->
+  <div class="quick-prompts-wrapper">
+    <div class="quick-prompts-title">Demo Actions (Click to Run)</div>
+    <div class="quick-prompts">
+      <button class="quick-btn" onclick="sendQuick('Get the deal details for SkyJet Fleet Upgrade')">
+        🔍 Get SkyJet deal details
+      </button>
+      <button class="quick-btn" onclick="sendQuick('Update the deal Acme Expansion Project to stage Closed Won')">
+        💼 Close Acme deal
+      </button>
+      <button class="quick-btn" onclick="sendQuick('Schedule a meeting with Prime Logistics on 2026-09-20')">
+        📅 Schedule meeting
+      </button>
+      <button class="quick-btn" onclick="sendQuick('Send a follow-up email to the SkyJet Aviation team about their contract renewal')">
+        ✉️ Send follow-up email
+      </button>
+      <button class="quick-btn" onclick="sendQuick('What is the current status of the GlobalTech Software License deal?')">
+        📊 Check GlobalTech status
+      </button>
+    </div>
   </div>
-  <div class="nav-item" data-section="accounts" onclick="switchSection(this)">
-    <span class="nav-icon">🏢</span> Accounts
+
+  <!-- Input Bar -->
+  <div class="chat-input-row">
+    <input
+      type="text"
+      class="chat-input"
+      id="chatInput"
+      placeholder="Ask the agent anything about your deals or pipeline…"
+      onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendMessage();}"
+      autocomplete="off"
+    />
+    <button class="chat-send" id="sendBtn" onclick="sendMessage()">
+      <span>Send</span>
+    </button>
   </div>
-  <div class="nav-item" data-section="contacts" onclick="switchSection(this)">
-    <span class="nav-icon">👥</span> Contacts
-  </div>
-  <div class="nav-item" data-section="tasks" onclick="switchSection(this)">
-    <span class="nav-icon">✅</span> Tasks
-  </div>
-  <div class="nav-item" data-section="agent" onclick="switchSection(this)">
-    <span class="nav-icon">💬</span> AI Agent
-  </div>
-</nav>
 
-<!-- Main Content -->
-<main class="main">
-
-  <!-- DASHBOARD -->
-  <section id="dashboard" class="section active">
-    <h1>📊 Dashboard</h1>
-    <div class="stats-grid" id="statsGrid">
-      <div class="stat-card">
-        <div class="stat-label">Total Deals</div>
-        <div class="stat-value" style="color:#38bdf8" id="s-deals">—</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-label">Pipeline Value</div>
-        <div class="stat-value" style="color:#4ade80" id="s-value">—</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-label">Accounts</div>
-        <div class="stat-value" style="color:#f472b6" id="s-accounts">—</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-label">Open Tasks</div>
-        <div class="stat-value" style="color:#fbbf24" id="s-tasks">—</div>
-      </div>
-    </div>
-
-    <!-- Recent Deals mini-table -->
-    <div class="card">
-      <div class="card-header">Recent Deals</div>
-      <table>
-        <thead><tr>
-          <th>Deal Name</th><th>Stage</th><th>Value</th><th>Close Date</th>
-        </tr></thead>
-        <tbody id="dashDealsBody">
-          <tr class="loading-row"><td colspan="4">Loading...</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
-
-  <!-- DEALS -->
-  <section id="deals" class="section">
-    <h1>💼 Deals</h1>
-    <div class="card">
-      <div class="card-header">All Deals</div>
-      <table>
-        <thead><tr>
-          <th>Name</th><th>Stage</th><th>Value</th><th>Priority</th><th>Close Date</th><th>Notes</th>
-        </tr></thead>
-        <tbody id="dealsBody">
-          <tr class="loading-row"><td colspan="6">Loading...</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
-
-  <!-- ACCOUNTS -->
-  <section id="accounts" class="section">
-    <h1>🏢 Accounts</h1>
-    <div class="card">
-      <div class="card-header">All Accounts</div>
-      <table>
-        <thead><tr>
-          <th>Name</th><th>Industry</th><th>Revenue</th><th>Status</th><th>Location</th><th>Phone</th>
-        </tr></thead>
-        <tbody id="accountsBody">
-          <tr class="loading-row"><td colspan="6">Loading...</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
-
-  <!-- CONTACTS -->
-  <section id="contacts" class="section">
-    <h1>👥 Contacts</h1>
-    <div class="card">
-      <div class="card-header">All Contacts</div>
-      <table>
-        <thead><tr>
-          <th>Name</th><th>Title</th><th>Email</th><th>Phone</th>
-        </tr></thead>
-        <tbody id="contactsBody">
-          <tr class="loading-row"><td colspan="4">Loading...</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
-
-  <!-- TASKS -->
-  <section id="tasks" class="section">
-    <h1>✅ Tasks</h1>
-    <div class="card">
-      <div class="card-header">All Tasks</div>
-      <table>
-        <thead><tr>
-          <th>Title</th><th>Status</th><th>Priority</th><th>Due Date</th>
-        </tr></thead>
-        <tbody id="tasksBody">
-          <tr class="loading-row"><td colspan="4">Loading...</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
-
-  <!-- AGENT CHAT -->
-  <section id="agent" class="section">
-    <h1>💬 AI Sales Agent</h1>
-    <div class="card chat-container">
-      <div class="chat-messages" id="chatMessages">
-        <div class="msg system">Agent ready. Ask me about your deals, schedule meetings, update stages, or send emails.</div>
-      </div>
-      <div class="quick-prompts">
-        <button class="quick-btn" onclick="sendQuick('Show me all deals in Negotiation')">Show Negotiation deals</button>
-        <button class="quick-btn" onclick="sendQuick('Update Acme Expansion Project to Closed Won')">Close Acme deal</button>
-        <button class="quick-btn" onclick="sendQuick('Schedule a meeting with Prime Logistics on 2026-09-20')">Schedule meeting</button>
-        <button class="quick-btn" onclick="sendQuick('Send a follow-up email to SkyJet Aviation about the contract')">Send follow-up email</button>
-        <button class="quick-btn" onclick="sendQuick('What is the status of GlobalTech Software License?')">Check GlobalTech deal</button>
-      </div>
-      <div class="chat-input-row">
-        <textarea class="chat-input" id="chatInput" rows="2"
-          placeholder="Ask the agent anything about your deals…"
-          onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendMessage();}"></textarea>
-        <button class="chat-send" id="sendBtn" onclick="sendMessage()">Send</button>
-      </div>
-    </div>
-  </section>
-
-</main>
+</div>
 
 <script>
-  // ─── Navigation ───────────────────────────────────────────────
-  function switchSection(el) {
-    document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-    el.classList.add('active');
-    document.getElementById(el.dataset.section).classList.add('active');
-  }
-
-  // ─── Helpers ──────────────────────────────────────────────────
-  function fmt(n) { return '$' + Number(n).toLocaleString(); }
-
-  function stageBadge(stage) {
-    const map = {
-      'Prospecting': 'badge-gray',
-      'Qualification': 'badge-blue',
-      'Negotiation': 'badge-yellow',
-      'Agreement Signed': 'badge-green',
-      'Closed Won': 'badge-green',
-      'Closed Lost': 'badge-red'
-    };
-    return `<span class="badge ${map[stage] || 'badge-gray'}">${stage}</span>`;
-  }
-
-  function priorityBadge(p) {
-    const map = { High: 'badge-red', Medium: 'badge-yellow', Low: 'badge-gray' };
-    return `<span class="badge ${map[p] || 'badge-gray'}">${p}</span>`;
-  }
-
-  function statusBadge(s) {
-    return s === 'Done'
-      ? `<span class="badge badge-green">Done</span>`
-      : `<span class="badge badge-blue">Open</span>`;
-  }
-
-  // ─── Load CRM Data ────────────────────────────────────────────
-  async function loadCRM() {
-    const [deals, accounts, contacts, tasks] = await Promise.all([
-      fetch('/api/crm/deals').then(r => r.json()),
-      fetch('/api/crm/accounts').then(r => r.json()),
-      fetch('/api/crm/contacts').then(r => r.json()),
-      fetch('/api/crm/tasks').then(r => r.json()),
-    ]);
-
-    // Stats
-    const totalValue = deals.reduce((s, d) => s + (d.value || 0), 0);
-    const openTasks = tasks.filter(t => t.status !== 'Done').length;
-    document.getElementById('s-deals').textContent = deals.length;
-    document.getElementById('s-value').textContent = fmt(totalValue);
-    document.getElementById('s-accounts').textContent = accounts.length;
-    document.getElementById('s-tasks').textContent = openTasks;
-
-    // Dashboard recent deals
-    document.getElementById('dashDealsBody').innerHTML = deals.slice(0, 5).map(d => `
-      <tr>
-        <td>${d.name}</td>
-        <td>${stageBadge(d.stage)}</td>
-        <td>${fmt(d.value)}</td>
-        <td>${d.close_date || '—'}</td>
-      </tr>`).join('');
-
-    // Full deals table
-    document.getElementById('dealsBody').innerHTML = deals.map(d => `
-      <tr>
-        <td><strong>${d.name}</strong></td>
-        <td>${stageBadge(d.stage)}</td>
-        <td>${fmt(d.value)}</td>
-        <td>${priorityBadge(d.priority || 'Low')}</td>
-        <td>${d.close_date || '—'}</td>
-        <td style="max-width:220px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="${d.notes || ''}">${d.notes || '—'}</td>
-      </tr>`).join('');
-
-    // Accounts table
-    document.getElementById('accountsBody').innerHTML = accounts.map(a => `
-      <tr>
-        <td><strong>${a.name}</strong></td>
-        <td>${a.industry}</td>
-        <td>${fmt(a.annual_revenue)}</td>
-        <td>${a.status === 'Active' ? '<span class="badge badge-green">Active</span>' : '<span class="badge badge-gray">Prospect</span>'}</td>
-        <td>${a.location || '—'}</td>
-        <td>${a.phone || '—'}</td>
-      </tr>`).join('');
-
-    // Contacts table
-    document.getElementById('contactsBody').innerHTML = contacts.map(c => `
-      <tr>
-        <td><strong>${c.name}</strong></td>
-        <td>${c.title}</td>
-        <td><a href="mailto:${c.email}" style="color:#38bdf8">${c.email}</a></td>
-        <td>${c.phone || '—'}</td>
-      </tr>`).join('');
-
-    // Tasks table
-    document.getElementById('tasksBody').innerHTML = tasks.map(t => `
-      <tr>
-        <td>${t.title}</td>
-        <td>${statusBadge(t.status)}</td>
-        <td>${priorityBadge(t.priority || 'Low')}</td>
-        <td>${t.due_date || '—'}</td>
-      </tr>`).join('');
-  }
-
-  // ─── Chat ─────────────────────────────────────────────────────
   function addMsg(role, html) {
     const div = document.createElement('div');
     div.className = `msg ${role}`;
@@ -456,7 +410,7 @@
 
     addMsg('user', query);
 
-    const thinking = addMsg('agent', '<span class="spinner"></span> Thinking…');
+    const thinking = addMsg('agent', '<span class="spinner"></span> Executing plan with autonomous agent…');
 
     try {
       const res = await fetch('/api/query', {
@@ -474,20 +428,24 @@
 
         let html = '';
         if (plan.length === 0) {
-          html = '⚠️ No actions were taken. The agent could not determine what to do.';
+          html = '⚠️ No actions were taken. The agent could not determine an appropriate action.';
         } else {
-          html += `<strong>✅ Completed ${plan.length} action(s):</strong><ul style="margin-top:8px;padding-left:1.2em">`;
+          html += `<strong>✅ Completed ${plan.length} action(s):</strong>`;
+          html += `<div class="plan-card">`;
+          html += `<div class="plan-header">⚡ Executed Workflow</div>`;
           plan.forEach(p => {
-            html += `<li style="margin-bottom:4px"><strong>${p.function_name}</strong> — ${JSON.stringify(p.arguments)}</li>`;
+            html += `<div style="margin-bottom:6px">`;
+            html += `<span class="action-pill">${p.function_name}</span>`;
+            html += `<span class="action-args">${JSON.stringify(p.arguments)}</span>`;
+            html += `</div>`;
           });
-          html += '</ul>';
+          html += `</div>`;
+
           if (Object.keys(toolResult).length > 0) {
-            html += `<pre>${JSON.stringify(toolResult, null, 2)}</pre>`;
+            html += `<pre class="result-block">${JSON.stringify(toolResult, null, 2)}</pre>`;
           }
         }
         addMsg('agent', html);
-        // Reload CRM data after actions
-        if (plan.length > 0) { loadCRM(); }
       } else {
         addMsg('agent', `❌ Error: ${data.detail || 'Unknown error'}`);
       }
@@ -499,9 +457,6 @@
       input.focus();
     }
   }
-
-  // ─── Init ─────────────────────────────────────────────────────
-  loadCRM();
 </script>
 </body>
 </html>

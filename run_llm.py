@@ -97,6 +97,9 @@ def verifier_node(state: AgentState):
         deal = get_deals(company)
         if deal.get("meeting_date") == expected_date:
             verified = True
+    elif func_name == "get_deals":
+        if tool_result.get("success", False) or "id" in tool_result:
+            verified = True
     else:
         # Default verification for other tools
         if tool_result.get("success", False):

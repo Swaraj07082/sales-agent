@@ -1,82 +1,26 @@
 [
-    {
-        "id": "E001",
-        "account_id": "A001",
-        "contact_id": "C001",
-        "subject": "Budget Approval Timeline",
-        "body": "Budget approval expected next week.",
-        "timestamp": "2026-08-20T10:30:00"
-    },
-    {
-        "id": "E002",
-        "account_id": "A001",
-        "contact_id": "C002",
-        "subject": "Follow-up on Proposal",
-        "body": "Team is reviewing pricing options.",
-        "timestamp": "2026-08-22T15:00:00"
-    },
-    {
-        "id": "E003",
-        "account_id": "A002",
-        "contact_id": "C003",
-        "subject": "Fleet Expansion Plans",
-        "body": "Looking to expand operations next quarter.",
-        "timestamp": "2026-08-21T11:00:00"
-    },
-    {
-        "id": "8f246b3994474cadb7ed1b02e0e7613e",
-        "account_id": "1f9ad0cb10bf43319e9939b0700735c6",
-        "contact_id": "b9e4e59917374364aebf5f9661e9fbe7",
-        "subject": "Meeting Reminder",
-        "body": "This is a reminder for the meeting scheduled with the client tomorrow at 10 AM.",
-        "timestamp": 140071482726317470
-    },
-    {
-        "id": "09155cd79f8d42059b4e3448b07cbec2",
-        "account_id": "77ea359878674a778a276c43e8688bf2",
-        "contact_id": "485a21d6dfba467dbadc21f193d9a22a",
-        "subject": "Acme Expansion Project Updated to Negotiation and Meeting Scheduled",
-        "body": "Hello,\n\nThe Acme Expansion Project has been moved to the Negotiation stage. A meeting has been scheduled for Tuesday, September 1, 2026.\n\nPlease let me know if you need any further details.\n\nBest regards,\n[Your Name]\n",
-        "timestamp": 140072991119950496
-    },
-    {
-        "id": "2863a6a2e1a54343a99e67915973f8bc",
-        "account_id": "de170f1f719d4564b6081c21d81ed9d1",
-        "contact_id": "799d79e174814a24b52fd11f3ff678d3",
-        "subject": "Acme Expansion Project Updated to Negotiation & Meeting Scheduled",
-        "body": "Hello,\n\nThe Acme Expansion Project has been moved to the 'Negotiation' stage in our CRM. A meeting has been scheduled for Tuesday, September 1, 2026.\n\nPlease let me know if you need any further details.\n\nBest regards,\n[Your Name]\nSales Team",
-        "timestamp": 140073039874400271
-    },
-    {
-        "id": "5976fa70c3a64b5f9014ad56ed10eca0",
-        "account_id": "dfe1281c41bb486c87fbabfe3702fde1",
-        "contact_id": "77a2bcd8ca7e40c59b1cc89efb234979",
-        "subject": "Acme Expansion Project moved to Negotiation and meeting scheduled",
-        "body": "Hello,\n\nThe Acme Expansion Project has been moved to the Negotiation stage. A meeting has been scheduled for Tuesday, September 1, 2026.\n\nBest regards,\nYour Sales Team",
-        "timestamp": 140073040327590012
-    },
-    {
-        "id": "dc1410b00cac460ca851fc64419472e4",
-        "account_id": "d6c4682509a64c5d918f1a8c3a6de8ad",
-        "contact_id": "6701e32df9bb4a7ab6a8eba3aa3a8851",
-        "subject": "Acme Expansion Project: Stage Updated to Negotiation & Meeting Scheduled",
-        "body": "Hello,\n\nThe Acme Expansion Project deal has been moved to the Negotiation stage. A meeting has been scheduled for Tuesday, September 1, 2026.\n\nBest regards,\nYour Sales Team",
-        "timestamp": 140073055002777221
-    },
-    {
-        "id": "34856dc3defa4a3c8d652f97024d1893",
-        "account_id": "12990c591d8b407491eba261050bf09b",
-        "contact_id": "dd0e5faddf2945f0aead74901563b217",
-        "subject": "Follow-Up on Contract Discussion",
-        "body": "Dear SkyJet Aviation Team,\n\nI hope you are doing well. I wanted to follow up regarding the contract we discussed recently. Please let me know if you have any questions or need further information. We're eager to move forward and ensure everything meets your expectations.\n\nLooking forward to your response.\n\nBest regards,\n[Your Name]\n[Your Position]\n[Your Company]\n[Contact Information]",
-        "timestamp": 140073654728555774
-    },
-    {
-        "id": "5382fd6119544726896e766264fda8c1",
-        "account_id": "8ce31ff06b19408ca94e87fb1ce5391d",
-        "contact_id": "bc603a2128a0496aa37b62249d10c92e",
-        "subject": "Follow-Up on Contract Details",
-        "body": "Dear SkyJet Aviation Team,\n\nI hope you are doing well. I am writing to follow up on the contract we discussed recently. Please let me know if you have any questions or require further information to move forward.\n\nWe are eager to finalize the agreement and begin our collaboration. Your timely response would be greatly appreciated.\n\nThank you for your attention, and I look forward to hearing from you soon.\n\nBest regards,\n[Your Name]\n[Your Position]\n[Your Company]\n[Contact Information]",
-        "timestamp": 140073656435209854
-    }
+  {
+    "id": "E001",
+    "account_id": "A001",
+    "contact_id": "C001",
+    "subject": "Budget Approval Timeline",
+    "body": "Budget approval expected next week.",
+    "timestamp": "2026-08-20T10:30:00"
+  },
+  {
+    "id": "E002",
+    "account_id": "A001",
+    "contact_id": "C002",
+    "subject": "Follow-up on Proposal",
+    "body": "Team is reviewing pricing options.",
+    "timestamp": "2026-08-22T15:00:00"
+  },
+  {
+    "id": "E003",
+    "account_id": "A002",
+    "contact_id": "C003",
+    "subject": "Fleet Expansion Plans",
+    "body": "Looking to expand operations next quarter.",
+    "timestamp": "2026-08-21T11:00:00"
+  }
 ]

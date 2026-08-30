@@ -1,58 +1,58 @@
 [
-    {
-        "id": "D001",
-        "account_id": "A001",
-        "name": "Acme Expansion Project",
-        "stage": "Negotiation",
-        "value": 50000,
-        "owner_id": "U001",
-        "close_date": "2026-09-15",
-        "meeting_date": "2026-09-01",
-        "priority": "High",
-        "notes": "Client wants custom pricing tiers."
-    },
-    {
-        "id": "D002",
-        "account_id": "A002",
-        "name": "SkyJet Fleet Upgrade",
-        "stage": "Agreement Signed",
-        "value": 120000,
-        "owner_id": "U002",
-        "close_date": "2026-10-01",
-        "priority": "High",
-        "notes": "Awaiting legal review of contract."
-    },
-    {
-        "id": "D003",
-        "account_id": "A003",
-        "name": "Prime Logistics Automation",
-        "stage": "Negotiation",
-        "value": 80000,
-        "owner_id": "U001",
-        "close_date": "2026-08-30",
-        "priority": "Medium",
-        "notes": "Competitor offering lower price. Need approval for discount."
-    },
-    {
-        "id": "D004",
-        "account_id": "A004",
-        "name": "GlobalTech Software License",
-        "stage": "Prospecting",
-        "value": 25000,
-        "owner_id": "U002",
-        "close_date": "2026-11-15",
-        "priority": "Low",
-        "notes": "Initial discovery call scheduled."
-    },
-    {
-        "id": "D005",
-        "account_id": "A005",
-        "name": "Vertex Manufacturing ERP Integration",
-        "stage": "Qualification",
-        "value": 95000,
-        "owner_id": "U003",
-        "close_date": "2026-12-01",
-        "priority": "High",
-        "notes": "Large potential deal. Needs technical demo."
-    }
+  {
+    "id": "D001",
+    "account_id": "A001",
+    "name": "Acme Expansion Project",
+    "stage": "Negotiation",
+    "value": 50000,
+    "owner_id": "U001",
+    "close_date": "2026-09-15",
+    "meeting_date": "2026-09-01",
+    "priority": "High",
+    "notes": "Client wants custom pricing tiers."
+  },
+  {
+    "id": "D002",
+    "account_id": "A002",
+    "name": "SkyJet Fleet Upgrade",
+    "stage": "Agreement Signed",
+    "value": 120000,
+    "owner_id": "U002",
+    "close_date": "2026-10-01",
+    "priority": "High",
+    "notes": "Awaiting legal review of contract."
+  },
+  {
+    "id": "D003",
+    "account_id": "A003",
+    "name": "Prime Logistics",
+    "stage": "Negotiation",
+    "value": 80000,
+    "owner_id": "U001",
+    "close_date": "2026-08-30",
+    "priority": "Medium",
+    "notes": "Competitor offering lower price. Need approval for discount."
+  },
+  {
+    "id": "D004",
+    "account_id": "A004",
+    "name": "GlobalTech Software License",
+    "stage": "Prospecting",
+    "value": 25000,
+    "owner_id": "U002",
+    "close_date": "2026-11-15",
+    "priority": "Low",
+    "notes": "Initial discovery call scheduled."
+  },
+  {
+    "id": "D005",
+    "account_id": "A005",
+    "name": "Vertex Manufacturing ERP Integration",
+    "stage": "Qualification",
+    "value": 95000,
+    "owner_id": "U003",
+    "close_date": "2026-12-01",
+    "priority": "High",
+    "notes": "Large potential deal. Needs technical demo."
+  }
 ]
