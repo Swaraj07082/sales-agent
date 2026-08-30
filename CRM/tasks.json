@@ -1,0 +1,52 @@
+[
+  {
+    "id": "T001",
+    "account_id": "A001",
+    "deal_id": "D001",
+    "owner_id": "U001",
+    "title": "Follow up on pricing review",
+    "status": "Open",
+    "due_date": "2026-09-05",
+    "priority": "High"
+  },
+  {
+    "id": "T002",
+    "account_id": "A002",
+    "deal_id": "D002",
+    "owner_id": "U002",
+    "title": "Prepare ROI presentation",
+    "status": "Open",
+    "due_date": "2026-09-10",
+    "priority": "Medium"
+  },
+  {
+    "id": "T003",
+    "account_id": "A003",
+    "deal_id": "D003",
+    "owner_id": "U001",
+    "title": "Request discount approval from manager",
+    "status": "Open",
+    "due_date": "2026-08-31",
+    "priority": "High"
+  },
+  {
+    "id": "T004",
+    "account_id": "A004",
+    "deal_id": "D004",
+    "owner_id": "U002",
+    "title": "Schedule discovery call",
+    "status": "Done",
+    "due_date": "2026-08-28",
+    "priority": "Low"
+  },
+  {
+    "id": "T005",
+    "account_id": "A005",
+    "deal_id": "D005",
+    "owner_id": "U003",
+    "title": "Prepare technical demo for Vertex",
+    "status": "Open",
+    "due_date": "2026-11-10",
+    "priority": "High"
+  }
+]

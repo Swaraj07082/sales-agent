@@ -1,0 +1,35 @@
+[
+    {
+        "id": "M001",
+        "deal_id": "D001",
+        "account_id": "A001",
+        "title": "Pricing Negotiation Call",
+        "date": "2026-09-01",
+        "time": "10:00 AM",
+        "duration_min": 60,
+        "attendees": ["U001", "C001"],
+        "notes": "Discuss custom pricing tiers and discounts."
+    },
+    {
+        "id": "M002",
+        "deal_id": "D002",
+        "account_id": "A002",
+        "title": "Contract Review Meeting",
+        "date": "2026-09-08",
+        "time": "2:00 PM",
+        "duration_min": 45,
+        "attendees": ["U002", "C003", "C004"],
+        "notes": "Legal team to join. Review contract clauses."
+    },
+    {
+        "id": "M003",
+        "deal_id": "D005",
+        "account_id": "A005",
+        "title": "ERP Demo for Vertex",
+        "date": "2026-11-12",
+        "time": "11:00 AM",
+        "duration_min": 90,
+        "attendees": ["U003", "C007"],
+        "notes": "Full product demo including integration walkthrough."
+    }
+]

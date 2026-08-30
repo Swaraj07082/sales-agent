@@ -1,0 +1,20 @@
+[
+  {
+    "id": "U001",
+    "name": "Sarah Johnson",
+    "email": "sarah@company.com",
+    "role": "Account Executive"
+  },
+  {
+    "id": "U002",
+    "name": "Michael Chen",
+    "email": "michael@company.com",
+    "role": "Sales Manager"
+  },
+  {
+    "id": "U003",
+    "name": "Priya Patel",
+    "email": "priya@company.com",
+    "role": "Customer Success Manager"
+  }
+]

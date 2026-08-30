@@ -1,0 +1,57 @@
+[
+  {
+    "id": "A001",
+    "name": "Acme Construction",
+    "industry": "Construction",
+    "owner_id": "U001",
+    "annual_revenue": 12000000,
+    "status": "Active",
+    "website": "https://acmeconstruction.com",
+    "phone": "+1-800-555-0101",
+    "location": "New York, NY"
+  },
+  {
+    "id": "A002",
+    "name": "SkyJet Aviation",
+    "industry": "Aviation",
+    "owner_id": "U002",
+    "annual_revenue": 35000000,
+    "status": "Active",
+    "website": "https://skyjetaviation.com",
+    "phone": "+1-800-555-0202",
+    "location": "Los Angeles, CA"
+  },
+  {
+    "id": "A003",
+    "name": "Prime Logistics",
+    "industry": "Trucking",
+    "owner_id": "U001",
+    "annual_revenue": 18000000,
+    "status": "Active",
+    "website": "https://primelogistics.com",
+    "phone": "+1-800-555-0303",
+    "location": "Chicago, IL"
+  },
+  {
+    "id": "A004",
+    "name": "GlobalTech Solutions",
+    "industry": "Technology",
+    "owner_id": "U002",
+    "annual_revenue": 9500000,
+    "status": "Active",
+    "website": "https://globaltechsolutions.com",
+    "phone": "+1-800-555-0404",
+    "location": "Austin, TX"
+  },
+  {
+    "id": "A005",
+    "name": "Vertex Manufacturing",
+    "industry": "Manufacturing",
+    "owner_id": "U003",
+    "annual_revenue": 22000000,
+    "status": "Prospect",
+    "website": "https://vertexmfg.com",
+    "phone": "+1-800-555-0505",
+    "location": "Detroit, MI"
+  }
+]
